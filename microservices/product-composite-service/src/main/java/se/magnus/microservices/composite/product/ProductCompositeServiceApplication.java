@@ -2,6 +2,7 @@ package se.magnus.microservices.composite.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.jackson.autoconfigure.JsonMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.json.JacksonJsonHttpMessageConverter;
@@ -35,6 +36,12 @@ public class ProductCompositeServiceApplication {
 		restTemplate.getMessageConverters().add(jsonConverter);
 
 		return restTemplate;
+	}
+
+	@Bean
+	JsonMapperBuilderCustomizer allowFinalFieldsAsMutators() {
+		return builder ->
+			builder.enable(MapperFeature.ALLOW_FINAL_FIELDS_AS_MUTATORS);
 	}
 
 	public static void main(String[] args) {
