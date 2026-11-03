@@ -9,13 +9,13 @@ services:
     build: microservices/recommendation-service
     mem_limit: 512m
     environment:
-      - SRING_PROFILES_ACTIVE=docker
+      - SPRING_PROFILES_ACTIVE=docker
 
   review:
     build: microservices/review-service
     mem_limit: 512m
     environment:
-      - SPRING_PROFILES_ACTIE=docker
+      - SPRING_PROFILES_ACTIVE=docker
 
   product-composite:
     build: microservices/product-composite-service
