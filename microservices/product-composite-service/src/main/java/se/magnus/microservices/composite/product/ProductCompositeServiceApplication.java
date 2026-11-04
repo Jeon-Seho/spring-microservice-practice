@@ -30,7 +30,7 @@ public class ProductCompositeServiceApplication {
 	@Value("${api.common.externalDocUrl}")	String apiExternalDocUrl;
 	@Value("${api.common.contact.name}")	String apiContactName;
 	@Value("${api.common.contact.url}")		String apiContactUrl;
-	@Value("${api.common.cantact.email}")	String apiContactEmail;
+	@Value("${api.common.contact.email}")	String apiContactEmail;
 
 	@Bean 
 	public OpenAPI getOpenApiDocumentation() {
