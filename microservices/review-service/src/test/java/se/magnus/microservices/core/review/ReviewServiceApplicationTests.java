@@ -1,5 +1,6 @@
 package se.magnus.microservices.core.review;
 
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -11,7 +12,7 @@ import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTest
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @AutoConfigureWebTestClient 
-@SpringBootTest
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 class ReviewServiceApplicationTests {
 	@Autowired 
 	private WebTestClient client;

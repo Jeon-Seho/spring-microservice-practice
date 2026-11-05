@@ -18,7 +18,7 @@ import tools.jackson.databind.MapperFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 @SpringBootApplication
-@ComponentScan ("se.magnus")
+@ComponentScan("se.magnus")
 public class ProductCompositeServiceApplication {
 	@Value("${api.common.version}")			String apiVersion;
 	@Value("${api.common.title}")			String apiTitle;
@@ -83,5 +83,4 @@ public class ProductCompositeServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductCompositeServiceApplication.class, args);
 	}
-
 }

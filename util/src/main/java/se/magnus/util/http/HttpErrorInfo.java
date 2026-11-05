@@ -23,7 +23,7 @@ public class HttpErrorInfo {
         this.message = message;
     }
 
-    public ZonedDateTime getTimeStamp() {
+    public ZonedDateTime getTimestamp() {
         return timestamp;
     }
 

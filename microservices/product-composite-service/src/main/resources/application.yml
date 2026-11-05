@@ -7,9 +7,9 @@ springdoc:
 api:
   common:
     version: 1.0.0
-    title: Sample api
+    title: Sample API
     description: Description of the API...
-    termsOfService: MY TERMS OF service
+    termsOfService: MY TERMS OF SERVICE
     license: MY LICENSE
     licenseUrl: MY LICENSE URL
 
@@ -38,13 +38,13 @@ api:
         1. Service Addresses\n(technical information regarding the addresses of the microservices that created the response)
 
         # Expected partial and error responses
-        In the following cases, only a partial response be created (used to simplify testing or error conditions)
+        In the following cases, only a partial response be created (used to simplify testing of error conditions)
 
         ## Product id 113
         200 - Ok, but no recommendations will be returned
 
         ## Product id 213
-        200 - Okm but ni reviews will be returned
+        200 - Ok, but no reviews will be returned
 
         ## Non numerical product id
         400 - A **Bad Request** error will be returned
@@ -53,7 +53,7 @@ api:
         404 - A **Not Found** error will be returned
 
         ## Negative product ids
-        422 - An *Unprocessable Content** error will be returned
+        422 - An **Unprocessable Content** error will be returned
 
 server.port: 7001
 spring.web.error.include-message: always

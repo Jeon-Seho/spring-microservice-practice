@@ -16,7 +16,7 @@ public interface ProductCompositeService {
     )
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "${api.responseCodes.ok.description}"),
-        @ApiResponse(responseCode = "400", description = "${api.responseCodes.badRequeset.description}"),
+        @ApiResponse(responseCode = "400", description = "${api.responseCodes.badRequest.description}"),
         @ApiResponse(responseCode = "404", description = "${api.responseCodes.notFound.description}"),
         @ApiResponse(responseCode = "422", description = "${api.responseCodes.unprocessableContent.description}")
     })

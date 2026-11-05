@@ -115,8 +115,8 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
                 .exchange(url, GET, null, new ParameterizedTypeReference<List<Review>>() {})
                 .getBody();
             
-                LOG.debug("Found {} reviews for a product with id: {}", reviews.size(), productId);
-                return reviews;
+            LOG.debug("Found {} reviews for a product with id: {}", reviews.size(), productId);
+            return reviews;
         } catch (Exception ex) {
             LOG.warn("Got an exception while requesting reviews, return zero reviews: {}", ex.getMessage());
             return new ArrayList<>();

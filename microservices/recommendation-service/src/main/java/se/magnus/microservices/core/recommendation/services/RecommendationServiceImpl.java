@@ -1,4 +1,4 @@
-package se.magnus.microservices.core.recommendation.service;
+package se.magnus.microservices.core.recommendation.services;
 
 import java.util.ArrayList;
 import java.util.List;

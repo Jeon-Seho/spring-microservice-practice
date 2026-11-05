@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("se.magnus")
-public class ReivewServiceApplication {
+public class ReviewServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReivewServiceApplication.class, args);
+		SpringApplication.run(ReviewServiceApplication.class, args);
 	}
 
 }
