@@ -5,7 +5,12 @@ logging:
   level:
     root: INFO
     se.magnus: DEBUG
-    
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 ---
 spring.config.activate.on-profile: docker
 
