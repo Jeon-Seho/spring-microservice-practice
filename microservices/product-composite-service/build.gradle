@@ -13,10 +13,6 @@ java {
 	}
 }
 
-ext {
-	mapstructVersion = '1.6.3'
-}
-
 repositories {
 	mavenCentral()
 }
@@ -31,11 +27,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	
-	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
