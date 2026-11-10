@@ -18,7 +18,7 @@ public interface RecommendationMapper {
     Recommendation entityToApi(RecommendationEntity entity);
 
     @Mappings({
-        @Mapping(target = "rate", source = "entity.rating"),
+        @Mapping(target = "rating", source = "api.rate"),
         @Mapping(target = "id", ignore = true),
         @Mapping(target = "version", ignore = true)
     })

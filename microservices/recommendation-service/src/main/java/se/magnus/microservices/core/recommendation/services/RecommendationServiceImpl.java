@@ -24,8 +24,8 @@ public class RecommendationServiceImpl implements RecommendationService {
 
     private final ServiceUtil serviceUtil;
 
-    public RecommendationServiceImpl(RecommendationRepository respository, RecommendationMapper mapper, ServiceUtil serviceUtil) {
-        this.repository = respository;
+    public RecommendationServiceImpl(RecommendationRepository repository, RecommendationMapper mapper, ServiceUtil serviceUtil) {
+        this.repository = repository;
         this.mapper = mapper;
         this.serviceUtil = serviceUtil;
     }

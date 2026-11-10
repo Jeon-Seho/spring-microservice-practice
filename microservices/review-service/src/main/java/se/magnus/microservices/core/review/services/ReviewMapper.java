@@ -14,7 +14,7 @@ public interface ReviewMapper {
     @Mappings({
         @Mapping(target = "serviceAddress", ignore = true)
     })
-    Review entityToApi(ReviewEntity entitiy);
+    Review entityToApi(ReviewEntity entity);
 
     @Mappings({
         @Mapping(target = "id", ignore = true),
@@ -24,5 +24,5 @@ public interface ReviewMapper {
 
     List<Review> entityListToApiList(List<ReviewEntity> entity);
 
-    List<ReviewEntity> apiListToEntityLit(List<Review> api);
+    List<ReviewEntity> apiListToEntityList(List<Review> api);
 }
