@@ -2,8 +2,6 @@ package se.magnus.microservices.composite.product.services;
 
 import static org.springframework.http.HttpMethod.GET;
 
-import java.io.IOException;
-// import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
