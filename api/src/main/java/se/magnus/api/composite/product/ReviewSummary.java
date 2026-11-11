@@ -10,7 +10,7 @@ public class ReviewSummary {
         this.reviewId = reviewId;
         this.author = author;
         this.subject = subject;
-        this.content = null;
+        this.content = content;
     }
 
     public int getReviewId() {

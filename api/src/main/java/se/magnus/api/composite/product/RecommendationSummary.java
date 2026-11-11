@@ -10,7 +10,7 @@ public class RecommendationSummary {
         this.recommendationId = recommendationId;
         this.author = author;
         this.rate = rate;
-        this.content = null;
+        this.content = content;
     }
 
     public int getRecommendationId() {
