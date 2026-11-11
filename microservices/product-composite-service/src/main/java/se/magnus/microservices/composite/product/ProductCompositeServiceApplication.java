@@ -69,7 +69,7 @@ public class ProductCompositeServiceApplication {
 		restTemplate.getMessageConverters().removeIf(
 			converter -> converter instanceof JacksonJsonHttpMessageConverter
 		);
-		restTemplate.getMessageConverters().add(jsonConverter);
+		restTemplate.getMessageConverters().add(0, jsonConverter);
 
 		return restTemplate;
 	}
