@@ -23,7 +23,7 @@ import se.magnus.microservices.core.product.persistence.ProductRepository;
 
 @AutoConfigureWebTestClient 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class ProductServiceApplicationTests {
+class ProductServiceApplicationTests extends MongoDbTestBase {
 	@Autowired
 	private WebTestClient client;
 
@@ -56,7 +56,7 @@ class ProductServiceApplicationTests {
 
 		postAndVerifyProduct(productId, UNPROCESSABLE_CONTENT)
 			.jsonPath("$.path").isEqualTo("/product")
-			.jsonPath("$.message").isEqualTo("Euplicate key, Product Id: " + productId);
+			.jsonPath("$.message").isEqualTo("Duplicate key, Product Id: " + productId);
 	}
 
 	@Test
@@ -94,7 +94,7 @@ class ProductServiceApplicationTests {
 
 		getAndVerifyProduct(productIdInvalid, UNPROCESSABLE_CONTENT)
 			.jsonPath("$.path").isEqualTo("/product/" + productIdInvalid)
-			.jsonPath("$.message").isEqualTo("Invalid productId: ");
+			.jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
 	}
 
 	private WebTestClient.BodyContentSpec getAndVerifyProduct(int productId, HttpStatus expectedStatus) {

@@ -21,7 +21,7 @@ import se.magnus.microservices.core.recommendation.persistence.RecommendationRep
 
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class RecommendationServiceApplicationTests {
+class RecommendationServiceApplicationTests extends MongoDbTestBase {
 	@Autowired 
 	private WebTestClient client;
 
@@ -107,7 +107,7 @@ class RecommendationServiceApplicationTests {
 
 		getAndVerifyRecommendationsByProductId("?productId=" + productIdInvalid, UNPROCESSABLE_CONTENT)
 			.jsonPath("$.path").isEqualTo("/recommendation")
-			.jsonPath("$/message").isEqualTo("Invalid productId: " + productIdInvalid);
+			.jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
 	}
 
 	private WebTestClient.BodyContentSpec getAndVerifyRecommendationsByProductId(int productId, HttpStatus expectedStatus) {

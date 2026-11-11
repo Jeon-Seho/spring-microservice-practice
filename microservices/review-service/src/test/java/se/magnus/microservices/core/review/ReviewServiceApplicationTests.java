@@ -21,7 +21,7 @@ import se.magnus.microservices.core.review.persistence.ReviewRepository;
 
 @AutoConfigureWebTestClient 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class ReviewServiceApplicationTests {
+class ReviewServiceApplicationTests extends MySqlTestBase {
 	@Autowired 
 	private WebTestClient client;
 
