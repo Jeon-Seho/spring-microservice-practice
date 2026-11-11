@@ -105,7 +105,7 @@ class ProductCompositeServiceApplicationTests {
 	@Test
 	void getProductInvalidInput() {
 		getAndVerifyProduct(PRODUCT_ID_INVALID, UNPROCESSABLE_CONTENT)
-			.jsonPath("$.path").isEqualTo("/product-composite" + PRODUCT_ID_INVALID)
+			.jsonPath("$.path").isEqualTo("/product-composite/" + PRODUCT_ID_INVALID)
 			.jsonPath("$.message").isEqualTo("INVALID: " + PRODUCT_ID_INVALID);
 	}
 
