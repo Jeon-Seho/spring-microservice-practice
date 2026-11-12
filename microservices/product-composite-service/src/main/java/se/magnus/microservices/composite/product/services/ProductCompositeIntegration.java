@@ -141,7 +141,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public Flux<Review> getReviews(int productId) {
-        String url = reviewServiceUrl + "?productId=" + productId;
+        String url = reviewServiceUrl + "/review?productId=" + productId;
 
         LOG.debug("Will call the getReviews API on URL: {}", url);
 
@@ -155,7 +155,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public Mono<Void> deleteReviews(int productId) {
-        return Mono.fromRunnable(() -> sendMessage("reveiws-out-0", new Event<>(DELETE, productId, null)))
+        return Mono.fromRunnable(() -> sendMessage("reviews-out-0", new Event<>(DELETE, productId, null)))
             .subscribeOn(publishEventScheduler).then();
     }
 
