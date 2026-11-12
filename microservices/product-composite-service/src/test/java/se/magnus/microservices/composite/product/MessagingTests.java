@@ -14,7 +14,6 @@ import static se.magnus.microservices.composite.product.IsSameEvent.sameEventExc
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
