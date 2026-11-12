@@ -14,7 +14,7 @@ java {
 }
 
 ext {
-	springCloudVersion = '2025.0.0'
+	springCloudVersion = '2025.1.0'
 }
 
 repositories {
@@ -28,7 +28,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:3.0.3'
 	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'	
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-webclient'	
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'

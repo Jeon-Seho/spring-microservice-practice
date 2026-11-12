@@ -15,7 +15,7 @@ java {
 
 ext {
 	mapstructVersion = '1.6.3'
-	springCloudVersion = '2025.0.0'
+	springCloudVersion = '2025.1.0'
 }
 
 repositories {
@@ -30,8 +30,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'	
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
