@@ -48,7 +48,7 @@ public class Event<K, T> {
         return data;
     }
 
-    @JsonSerialize (using = ZonedDateTimeSerializer.class)
+    @JsonSerialize(using = ZonedDateTimeSerializer.class)
     public ZonedDateTime getEventCreatedAt() {
         return eventCreatedAt;
     }

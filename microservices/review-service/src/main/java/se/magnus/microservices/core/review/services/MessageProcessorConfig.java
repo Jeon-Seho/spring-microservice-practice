@@ -36,7 +36,7 @@ public class MessageProcessorConfig {
                 
                 case DELETE:
                     int productId = event.getKey();
-                    LOG.info("Delete review with ProductID {}", productId);
+                    LOG.info("Delete reviews with ProductID {}", productId);
                     reviewService.deleteReviews(productId).block();
                     break;
                 
@@ -50,4 +50,3 @@ public class MessageProcessorConfig {
         };
     }
 }
-

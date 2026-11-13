@@ -41,7 +41,7 @@ public class IsSameEvent extends TypeSafeMatcher<String> {
         Map mapExpectedEvent = getMapWithoutCreatedAt(expectedEvent);
 
         LOG.trace("Got the map: {}", mapEvent);
-        LOG.trace("Compore to the expected map: {}", mapExpectedEvent);
+        LOG.trace("Compare to the expected map: {}", mapExpectedEvent);
 
         return mapEvent.equals(mapExpectedEvent);
     }

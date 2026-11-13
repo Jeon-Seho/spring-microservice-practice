@@ -74,7 +74,7 @@ class PersistenceTests extends MySqlTestBase {
     }
 
     @Test
-    void duplicatedError() {
+    void duplicateError() {
         assertThrows(DataIntegrityViolationException.class, () -> {
             ReviewEntity entity = new ReviewEntity(1, 2, "a", "s", "c");
             repository.save(entity);

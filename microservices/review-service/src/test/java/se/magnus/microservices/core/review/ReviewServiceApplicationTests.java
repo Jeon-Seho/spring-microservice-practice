@@ -29,7 +29,7 @@ import se.magnus.microservices.core.review.persistence.ReviewRepository;
 
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
-	"spring.cloud.stream.defautlBinder=rabbit",
+	"spring.cloud.stream.defaultBinder=rabbit",
 	"logging.level.se.magnus=DEBUG"
 })
 class ReviewServiceApplicationTests extends MySqlTestBase {
@@ -95,10 +95,10 @@ class ReviewServiceApplicationTests extends MySqlTestBase {
 		sendCreateReviewEvent(productId, reviewId);
 		assertEquals(1, repository.findByProductId(productId).size());
 
-		sendDeleteProductEvent(productId);
+		sendDeleteReviewEvent(productId);
 		assertEquals(0, repository.findByProductId(productId).size());
 
-		sendDeleteProductEvent(productId);
+		sendDeleteReviewEvent(productId);
 	}
 
 	@Test 
@@ -150,7 +150,7 @@ class ReviewServiceApplicationTests extends MySqlTestBase {
 		messageProcessor.accept(event);
 	}
 
-	private void sendDeleteProductEvent(int productId) {
+	private void sendDeleteReviewEvent(int productId) {
 		Event<Integer, Review> event = new Event<>(DELETE, productId, null);
 		messageProcessor.accept(event);
 	}
