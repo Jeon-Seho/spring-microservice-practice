@@ -63,16 +63,16 @@ api:
 server.port: 7001
 spring.web.error.include-message: always
 
-app:
-  product-service:
-    host: localhost
-    port: 7002
-  recommendation-service:
-    host: localhost
-    port: 7003
-  review-service:
-    host: localhost
-    port: 7004
+# app:
+#   product-service:
+#     host: localhost
+#     port: 7002
+#   recommendation-service:
+#     host: localhost
+#     port: 7003
+#   review-service:
+#     host: localhost
+#     port: 7004
 
 spring.cloud.stream:
   defaultBinder: rabbit
