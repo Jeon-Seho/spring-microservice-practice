@@ -1,6 +1,20 @@
 server.port: 7004
 spring.web.error.include-message: always
 
+spring.application.name: review
+
+app.eureka-server: localhost
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${app.eureka-server}:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+
 logging:
   level:
     root: INFO
@@ -56,6 +70,8 @@ management.endpoints.web.exposure.include: "*"
 spring.config.activate.on-profile: docker
 
 server.port: 8080
+
+app.eureka-server: eureka
 
 spring:
   datasource:
