@@ -7,11 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@AutoConfigureTestRestTemplate
 class EurekaServerApplicationTests {
 	@Value("${app.eureka-username}")
 	private String username;
@@ -33,5 +35,14 @@ class EurekaServerApplicationTests {
 
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 		assertEquals(expectedReponseBody, entity.getBody());
+	}
+	
+	@Test
+	void healthy() {
+		String expectedResponseBody = "{\"status\":\"UP\"}";
+		ResponseEntity<String> entity = testRestTemplate.getForEntity("/actuator/health", String.class);
+
+		assertEquals(HttpStatus.OK, entity.getStatusCode());
+		assertEquals(expectedResponseBody, entity.getBody());
 	}
 }

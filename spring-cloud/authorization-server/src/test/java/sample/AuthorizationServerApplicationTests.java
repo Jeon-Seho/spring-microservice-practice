@@ -10,6 +10,7 @@ import java.util.Base64;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest(
@@ -18,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 		"spring.cloud.config.enable=false"
 	}
 )
+@AutoConfigureMockMvc
 class AuthorizationServerApplicationTests {
 	@Autowired
 	MockMvc mvc;
