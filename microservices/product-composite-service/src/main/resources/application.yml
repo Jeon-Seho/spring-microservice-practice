@@ -3,6 +3,17 @@ springdoc:
   api-docs.path: /openapi/v3/api-docs
   packagesToScan: se.magnus.microservices.composite.product
   pathsToMatch: /**
+  cache.disabled: true
+
+  swagger-ui:
+    oauth2-redirect-url: /swagger-ui/oauth2-redirect.html
+    oauth:
+      clientId: writer
+      clientSecret: secret-writer
+      useBasicAuthenticationWithAccessCodeGrant: true
+  oAuthFlow:
+    authorizationUrl: https://localhost:8443/oauth2/authorize
+    tokenUrl: https://localhost:8443/oauth2/token
 
 server.forward-headers-strategy: framework
 
@@ -120,6 +131,8 @@ spring.rabbitmq:
   port: 5672
   username: guest
   password: guest
+
+spring.security.oauth2.resourceserver.jwt.issuer-uri: http://${app.auth-server}:9999
 
 logging:
   level:
