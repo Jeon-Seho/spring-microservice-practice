@@ -4,6 +4,8 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     depends_on:
       mongodb:
         condition: service_healthy
@@ -15,6 +17,8 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     depends_on:
       mongodb:
         condition: service_healthy
@@ -26,6 +30,8 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     depends_on:
       mysql:
         condition: service_healthy
@@ -37,8 +43,12 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     depends_on:
       rabbitmq:
+        condition: service_healthy
+      auth-server:
         condition: service_healthy
 
   mongodb:
@@ -48,9 +58,9 @@ services:
       - "27017:27017"
     command: mongod
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh -- quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet
       interval: 5s
-      timeout: 10s
+      timeout: 2s
       retries: 60
 
   mysql:
@@ -66,7 +76,7 @@ services:
     healthcheck:
       test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
       interval: 5s
-      timeout: 10s
+      timeout: 2s
       retries: 60
 
   rabbitmq:
@@ -78,18 +88,24 @@ services:
     healthcheck:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 5s
-      timeout: 10s
+      timeout: 2s
       retries: 60
 
   eureka:
     build: spring-cloud/eureka-server
     mem_limit: 512m
+    environment:
+    - SPRING_PROFILES_ACTIVE=docker
+    - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+    - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
 
   gateway:
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
     build: spring-cloud/gateway
     mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     ports:
       - "8443:8443"
     depends_on:
@@ -97,10 +113,12 @@ services:
         condition: service_healthy
 
   auth-server:
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
     build: spring-cloud/authorization-server
     mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
+      - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
     healthcheck:
       test: ["CMD", "wget", "-O -", "-q", "http://localhost:9999/actuator/health"]
       interval: 5s
@@ -116,4 +134,4 @@ services:
       - SPRING_SECURITY_USER_NAME=${CONFIG_SERVER_USR}
       - SPRING_SECURITY_USER_PASSWORD=${CONFIG_SERVER_PWD}
     volumes:
-      - ./config-repo:/config-repo
+      - $PWD/config-repo:/config-repo
