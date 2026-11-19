@@ -87,6 +87,13 @@ spring.cloud.gateway.server.webflux.routes:
   predicates:
   - Path=/eureka/**
 
+- id: config-server
+  uri: http://config-server:8888
+  predicates:
+  - Path=/config/**
+  filters:
+  - StripPrefix=1
+
 - id: host_route_200
   uri: https://httpbin.org
   predicates:
