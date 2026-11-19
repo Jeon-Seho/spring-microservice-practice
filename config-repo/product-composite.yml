@@ -9,7 +9,7 @@ springdoc:
     oauth2-redirect-url: /swagger-ui/oauth2-redirect.html
     oauth:
       clientId: writer
-      clientSecret: secret-writer
+      clientSecret: '{cipher}debb77857798ba70441b229de88624213b0a00b284f95fe31d1378d117cf3ffa'
       useBasicAuthenticationWithAccessCodeGrant: true
       usePkceWithAuthorizationCodeGrant: true
   oAuthFlow:
@@ -19,6 +19,7 @@ springdoc:
 server.forward-headers-strategy: framework
 
 api:
+
   common:
     version: 1.0.0
     title: Sample API
@@ -41,6 +42,7 @@ api:
     unprocessableContent.description: Unprocessable content, input parameters caused the processing to fail. See response message for more information
 
   product-composite:
+
     get-composite-product:
       description: Returns a composite view of the specified product id
       notes: |
@@ -52,14 +54,14 @@ api:
         1. Service Addresses\n(technical information regarding the addresses of the microservices that created the response)
 
         # Expected partial and error responses
-        1. If no product impormation is found, a **404 - Not Found** error will be returned
-        1. In no recommendations or reviews are found for a project, a partial response will be returned
+        1. If no product information is found, a **404 - Not Found** error will be returned
+        1. In no recommendations or reviews are found for a product, a partial response will be returned
 
     create-composite-product:
       description: Creates a composite product
       notes: |
         # Normal response
-        The composite product information posted to the API will be split up and stored as separate product-info, recommendation and review entities
+        The composite product information posted to the API will be split up and stored as separate product-info, recommendation and review entities.
 
         # Expected error responses
         1. If a product with the same productId as specified in the posted information already exists,
@@ -77,37 +79,7 @@ api:
 server.port: 7001
 spring.web.error.include-message: always
 
-spring.application.name: product-composite
-
-app:
-  eureka-username: u
-  eureka-password: p
-  eureka-server: localhost
-  auth-server: localhost
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: "http://${app.eureka-username}:${app.eureka-password}@${app.eureka-server}:8761/eureka/"
-    initialInstanceInfoReplicationIntervalSeconds: 5
-    registryFetchIntervalSeconds: 5
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 5
-
-# app:
-#   product-service:
-#     host: localhost
-#     port: 7002
-#   recommendation-service:
-#     host: localhost
-#     port: 7003
-#   review-service:
-#     host: localhost
-#     port: 7004
-
 spring.cloud.stream:
-  defaultBinder: rabbit
   default.contentType: application/json
   bindings:
     products-out-0:
@@ -123,40 +95,18 @@ spring.cloud.stream:
       producer:
         required-groups: auditGroup
 
-spring.cloud.stream.kafka.binder:
-  brokers: 127.0.0.1
-  defaultBrokerPort: 9092
-
-spring.rabbitmq:
-  host: 127.0.0.1
-  port: 5672
-  username: guest
-  password: guest
-
 spring.security.oauth2.resourceserver.jwt.issuer-uri: http://${app.auth-server}:9999
 
 logging:
   level:
     root: INFO
     se.magnus: DEBUG
-
-management.endpoint.health.show-details: "ALWAYS"
-management.endpoints.web.exposure.include: "*"
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: TRACE
 
 ---
 spring.config.activate.on-profile: docker
 
 server.port: 8080
-
-app.eureka-server: eureka
-
-app:
-  eureka-server: eureka
-  auth-server: auth-server
-
-spring.rabbitmq.host: rabbitmq
-
-spring.cloud.stream.kafka.binder.brokers: kafka
 
 ---
 spring.config.activate.on-profile: streaming_partitioned
@@ -172,11 +122,3 @@ spring.cloud.stream.bindings.recommendations-out-0.producer:
 spring.cloud.stream.bindings.reviews-out-0.producer:
   partition-key-expression: headers['partitionKey']
   partition-count: 2
-
----
-spring.config.activate.on-profile: kafka
-
-management.health.rabbit.enabled: false
-spring.cloud.stream.defaultBinder: kafka
-spring.kafka.bootstrap-servers: kafka:9092
-spring.cloud.stream.kafka.binder.replication-factor: 1
