@@ -1,3 +1,5 @@
+management.endpoint.health.probes.enabled: false
+
 app:
   eureka-username: u
   eureka-password: p
