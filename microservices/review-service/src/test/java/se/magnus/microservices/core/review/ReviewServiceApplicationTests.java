@@ -7,7 +7,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_CONTENT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static reactor.core.publisher.Mono.just;
 import static se.magnus.api.event.Event.Type.CREATE;
 import static se.magnus.api.event.Event.Type.DELETE;
 
@@ -31,7 +30,8 @@ import se.magnus.microservices.core.review.persistence.ReviewRepository;
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
 	"spring.cloud.stream.defaultBinder=rabbit",
 	"logging.level.se.magnus=DEBUG",
-	"eureka.client.enabled=false"
+	"eureka.client.enabled=false",
+	"spring.cloud.config.enabled=false"
 })
 class ReviewServiceApplicationTests extends MySqlTestBase {
 	@Autowired 
