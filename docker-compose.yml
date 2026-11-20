@@ -98,6 +98,9 @@ services:
     - SPRING_PROFILES_ACTIVE=docker
     - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
     - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
+    depends_on:
+      config-server:
+        condition: service_healthy
 
   gateway:
     build: spring-cloud/gateway
@@ -135,3 +138,8 @@ services:
       - SPRING_SECURITY_USER_PASSWORD=${CONFIG_SERVER_PWD}
     volumes:
       - $PWD/config-repo:/config-repo
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8888/actuator/health"]
+      interval: 5s
+      timeout: 2s
+      retries: 30
